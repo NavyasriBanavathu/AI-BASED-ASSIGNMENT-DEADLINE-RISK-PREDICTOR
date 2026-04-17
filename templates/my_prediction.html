@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <h1>My Prediction Results</h1>
+</header>
+
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<div class="container">
+
+    {% if logs and logs|length > 0 %}
+
+        {% for log in logs %}
+        <div class="card">
+            <p><b>Avg Late Days:</b> {{ log[0] }}</p>
+            <p><b>GPA:</b> {{ log[1] }}</p>
+            <p><b>Absences:</b> {{ log[2] }}</p>
+
+            <p><b>Risk Status:</b>
+                {% if log[3] == "Low Risk" %}
+                    <span class="low">🟢 Low Risk</span>
+                {% elif log[3] == "Medium Risk" %}
+                    <span class="medium">🟡 Medium Risk</span>
+                {% else %}
+                    <span class="high">🔴 High Risk</span>
+                {% endif %}
+            </p>
+
+            <p><b>Predicted On:</b> {{ log[4] }}</p>
+        </div>
+        {% endfor %}
+
+    {% else %}
+        <div class="card">
+            <p>No prediction data available.</p>
+        </div>
+    {% endif %}
+
+</div>
+
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

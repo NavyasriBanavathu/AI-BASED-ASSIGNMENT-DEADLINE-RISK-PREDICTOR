@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Classroom</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <h1>Create Classroom</h1>
+    <p>Generate classroom access code</p>
+</header>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- ===== CONTENT ===== -->
+<div class="container">
+
+    <h2>Classroom Management</h2>
+
+    <div class="card">
+        <form method="post">
+            <p>
+                Click the button below to generate a unique classroom access code.
+                Share this code with students to allow them to join.
+            </p>
+
+            <button type="submit">Generate Classroom Code</button>
+        </form>
+    </div>
+
+    {% if code %}
+    <div class="card">
+        <h3>Classroom Access Code</h3>
+        <p style="font-size:26px; font-weight:bold; color:#2563eb;">
+            {{ code }}
+        </p>
+        <p>
+            Students can use this code to join the classroom.
+        </p>
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

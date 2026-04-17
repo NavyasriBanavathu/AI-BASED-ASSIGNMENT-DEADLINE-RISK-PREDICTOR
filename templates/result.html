@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <h1>Assignment Deadline Risk Result</h1>
+</header>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/study_plan">Predict Again</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- ===== CONTENT ===== -->
+<div class="container">
+
+    <h2>Prediction Outcome</h2>
+
+    <div class="card">
+        <p>Your predicted assignment deadline risk level is:</p>
+
+        <h1 class="{{ cls }}">
+            {{ result }}
+        </h1>
+    </div>
+
+    <div class="card">
+        <p>
+            <b>Interpretation:</b><br>
+            <span class="low">Low Risk</span> – You are well-prepared and likely to submit on time.<br>
+            <span class="high">High Risk</span> – Immediate attention is required to avoid missing the deadline.
+        </p>
+    </div>
+
+    <div class="card">
+        <a href="/study_plan">
+            <button>Predict Again</button>
+        </a>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

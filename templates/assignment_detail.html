@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment Details</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <h1>{{ assignment[0] }}</h1>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <p><b>Description:</b></p>
+        <p>{{ assignment[1] }}</p>
+
+        <p><b>Deadline:</b> {{ assignment[2] }} days</p>
+
+        {% if assignment[4] %}
+        <p><b>Attached File:</b> <a href="/{{ assignment[4] }}" target="_blank">Download / View PDF</a></p>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <h3>Submit Assignment</h3>
+        <form method="post" enctype="multipart/form-data">
+            <label>Submission Content</label>
+            <textarea rows="4" placeholder="Paste your work / explanation here"></textarea>
+
+            <label>Upload Files</label>
+            <input type="file" name="submission_file" accept=".pdf">
+
+            <button type="submit">Submit Assignment</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

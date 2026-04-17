@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <h1>Faculty Dashboard</h1>
+    <p>AI-Based Assignment Deadline Risk Prediction System</p>
+</header>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="container">
+
+    <h2>Faculty Controls</h2>
+
+    <!-- ===== TRAIN MODEL ===== -->
+    <div class="card">
+        <h3>🧠 Train AI Model</h3>
+        <p>
+            Train the machine learning model using historical assignment data.
+            After training, model accuracy and evaluation metrics will be displayed.
+        </p>
+        <a href="/train_model">
+            <button>Train Model</button>
+        </a>
+    </div>
+
+    <!-- ===== FACULTY PREDICT ===== -->
+    <div class="card">
+        <h3>📊 Predict Assignment Risk</h3>
+        <p>
+            Predict assignment deadline risk for students using the test dataset.
+            All predictions are automatically stored as logs.
+        </p>
+        <a href="/faculty_predict">
+            <button>Predict Risk</button>
+        </a>
+    </div>
+
+    <!-- ===== VIEW PREDICTION LOGS ===== -->
+    <div class="card">
+        <h3>📈 View Prediction Logs</h3>
+        <p>
+            View previously generated risk predictions, including student details
+            and prediction timestamps.
+        </p>
+        <a href="/view_predictions">
+            <button>View Prediction Logs</button>
+        </a>
+    </div>
+    <div class="card">
+    <h3>📊 Prediction Visualization</h3>
+    <p>
+        View graphical analysis of student risk predictions
+        and sort prediction logs by student name.
+    </p>
+    <a href="/prediction_visualization">
+        <button>View Visualization</button>
+    </a>
+</div>
+
+
+    <!-- ===== CREATE ASSIGNMENT ===== -->
+    <div class="card">
+        <h3>📝 Create Assignment</h3>
+        <p>
+            Create assignments by specifying assignment name, requirements,
+            and submission deadline.
+        </p>
+        <a href="/create_assignment">
+            <button>Create Assignment</button>
+        </a>
+    </div>
+
+    <!-- ===== VIEW ASSIGNMENTS ===== -->
+    <div class="card">
+        <h3>📋 View Assignments</h3>
+        <p>
+            View all created assignments and track which students
+            have taken each assignment.
+        </p>
+        <a href="/view_assignments">
+            <button>View Assignments</button>
+        </a>
+    </div>
+
+    <!-- ===== CREATE CLASSROOM ===== -->
+    <div class="card">
+        <h3>🏫 Create Classroom</h3>
+        <p>
+            Generate a classroom access code to allow students
+            to join the virtual classroom.
+        </p>
+        <a href="/create_classroom">
+            <button>Create Classroom</button>
+        </a>
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

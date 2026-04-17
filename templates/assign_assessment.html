@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assign Assessment</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Assign Assessment</h1>
+        <p>Create assignment with deadline</p>
+    </header>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </nav>
+
+    <div class="container">
+        <h2>Assignment Details</h2>
+
+        <form method="post">
+            <label>Classroom Access Code</label>
+            <input type="text" name="code" required>
+
+            <label>Deadline (in days)</label>
+            <input type="number" name="deadline" required>
+
+            <button type="submit">Assign Assessment</button>
+        </form>
+    </div>
+
+    <footer>© AI Assignment Deadline Risk Prediction System</footer>
+
+</body>
+
+</html>

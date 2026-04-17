@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Data Prediction Results</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Test Dataset Prediction Results</h1>
+    <p>Faculty Evaluation View</p>
+</header>
+
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/view_predictions">View Logs</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Predicted Results (Test Data)</h2>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Avg Late Days</th>
+                <th>GPA</th>
+                <th>Absences</th>
+                <th>Predicted Risk</th>
+            </tr>
+
+            {% for r in results %}
+            <tr>
+                <td>{{ r.name }}</td>
+                <td>{{ r.avg_late_days }}</td>
+                <td>{{ r.gpa }}</td>
+                <td>{{ r.absences }}</td>
+                <td>
+                    {% if r.risk == "Low Risk" %}
+                        <span class="low">🟢 Low Risk</span>
+                    {% elif r.risk == "Medium Risk" %}
+                        <span class="medium">🟡 Medium Risk</span>
+                    {% else %}
+                        <span class="high">🔴 High Risk</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

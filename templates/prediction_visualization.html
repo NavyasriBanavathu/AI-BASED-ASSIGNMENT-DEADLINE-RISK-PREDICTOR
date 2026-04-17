@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Visualization</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Prediction Visualization</h1>
+    <p>Faculty Analytics Dashboard</p>
+</header>
+
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/view_predictions">View Logs</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<div class="container">
+
+    <!-- ================= GRAPH ================= -->
+    <div class="card">
+        <h2>Risk Distribution by Student</h2>
+        <canvas id="riskChart"></canvas>
+    </div>
+
+    <!-- ================= SORTED TABLE ================= -->
+    <div class="card">
+        <h2>Prediction Logs (Sorted by Student Name)</h2>
+
+        {% if logs and logs|length > 0 %}
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Risk</th>
+            </tr>
+
+            {% for l in logs %}
+            <tr>
+                <td>{{ l[0] }}</td>
+                <td>
+                    {% if l[1] == "Low Risk" %}
+                        <span class="low">🟢 Low Risk</span>
+                                      
+                    {% else %}
+                        <span class="high">🔴 High Risk</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>No prediction data available.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+<script>
+const data = {{ chart_data | tojson }};
+
+// Extract labels & values
+const labels = Object.keys(data);
+const low = labels.map(n => data[n]["Low Risk"]);
+const medium = labels.map(n => data[n]["Medium Risk"]);
+const high = labels.map(n => data[n]["High Risk"]);
+
+new Chart(document.getElementById('riskChart'), {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Low Risk',
+                data: low,
+                backgroundColor: 'green'
+            },
+            {
+                label: 'High Risk',
+                data: high,
+                backgroundColor: 'red'
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Prediction Count'
+                }
+            }
+        }
+    }
+});
+</script>
+
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

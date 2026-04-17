@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Prediction Logs</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Student Prediction Logs</h1>
+    <p>Faculty View</p>
+</header>
+
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<div class="container">
+
+    {% if logs and logs|length > 0 %}
+
+    <div class="card">
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Avg Late Days</th>
+                <th>GPA</th>
+                <th>Absences</th>
+                <th>Risk</th>
+                <th>Date</th>
+            </tr>
+
+            {% for l in logs %}
+            <tr>
+                <td>{{ l[0] }}</td>
+                <td>{{ l[1] }}</td>
+                <td>{{ l[2] }}</td>
+                <td>{{ l[3] }}</td>
+                <td>
+                    {% if l[4] == "Low Risk" %}
+                        <span class="low">🟢 Low Risk</span>
+                    {% elif l[4] == "Medium Risk" %}
+                        <span class="medium">🟡 Medium Risk</span>
+                    {% else %}
+                        <span class="high">🔴 High Risk</span>
+                    {% endif %}
+                </td>
+                <td>{{ l[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    {% else %}
+        <div class="card">
+            <p>No prediction data available.</p>
+        </div>
+    {% endif %}
+
+</div>
+
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

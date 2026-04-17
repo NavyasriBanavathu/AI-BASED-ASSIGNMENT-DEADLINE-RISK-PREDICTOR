@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Train AI Model</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Model Training & Evaluation</h1>
+    <p>Faculty Control Panel</p>
+</header>
+
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<div class="container">
+
+    {% if model_trained %}
+
+    <!-- ================= TRAINING STATUS ================= -->
+    <div class="card">
+        <h2>✅ Model Training Completed</h2>
+        <p>
+            The machine learning models have been trained using historical
+            assignment data. Performance evaluation results are shown below.
+        </p>
+    </div>
+
+    <!-- ================= ACCURACY COMPARISON ================= -->
+    <div class="card">
+        <h3>📊 Algorithm Accuracy Comparison</h3>
+
+        <table>
+            <tr>
+                <th>Algorithm</th>
+                <th>Accuracy (%)</th>
+            </tr>
+            <tr>
+                <td>Random Forest</td>
+                <td>{{ rf_accuracy }} %</td>
+            </tr>
+            <tr>
+                <td>XGBoost</td>
+                <td>{{ xgb_accuracy }} %</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ================= BEST MODEL ================= -->
+    <div class="card">
+        <h3>🏆 Selected Best Model</h3>
+        <p>
+            <b>Best Algorithm:</b> {{ best_model }} <br><br>
+            <b>Final Model Accuracy:</b> {{ accuracy }} %
+        </p>
+    </div>
+
+    <!-- ================= CONFUSION MATRIX ================= -->
+    <div class="card">
+        <h3>📉 Confusion Matrix</h3>
+        <p>
+            This matrix shows the classification performance of the selected model.
+        </p>
+        <img src="/static/confusion_matrix.png"
+             alt="Confusion Matrix"
+             style="max-width:100%; border:1px solid #ccc;">
+    </div>
+
+    {% else %}
+
+    <div class="card">
+        <h2>Model Not Trained</h2>
+        <p>Please train the model from the faculty dashboard.</p>
+    </div>
+
+    {% endif %}
+
+    <div class="card center">
+        <a href="/dashboard">
+            <button>Back to Dashboard</button>
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

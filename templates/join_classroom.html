@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Join Classroom</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Join Classroom</h1>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <form method="post">
+            <label><b>Classroom Code</b></label>
+            <input type="text" name="code" required>
+
+            <button type="submit">Join</button>
+        </form>
+    </div>
+
+    {% if error %}
+    <div class="card">
+        <p style="color:red;">{{ error }}</p>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

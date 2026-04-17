@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment Risk Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <h1>Assignment Risk Prediction</h1>
+    <p>Enter academic indicators to predict deadline risk</p>
+</header>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- ===== CONTENT ===== -->
+<div class="container">
+
+    <h2>Student Input Details</h2>
+
+    <div class="card">
+        <form method="post">
+
+            <label><b>Average Late Submission Days</b></label>
+            <input type="number"
+                   name="avg_late_days"
+                   placeholder="Enter average late days"
+                   min="0"
+                   max="365"
+                   step="1"
+                   onkeydown="if(event.key === '-' || event.key === '+' || event.key === 'e' || event.key === 'E' || event.key === '.') event.preventDefault();"
+                   oninput="if(this.value < 0) this.value = 0; if(this.value % 1 !== 0) this.value = Math.floor(this.value);"
+                   required>
+
+            <label><b>Current GPA</b></label>
+            <input type="number"
+                   step="0.01"
+                   name="gpa"
+                   placeholder="Enter GPA (e.g., 7.5)"
+                   min="0"
+                   max="10"
+                   onkeydown="if(event.key === '-' || event.key === '+' || event.key === 'e' || event.key === 'E') event.preventDefault();"
+                   oninput="if(this.value < 0) this.value = 0; if(this.value > 10) this.value = 10;"
+                   required>
+
+            <label><b>Number of Absences</b></label>
+            <input type="number"
+                   name="absences"
+                   placeholder="Enter total absences"
+                   min="0"
+                   max="365"
+                   step="1"
+                   onkeydown="if(event.key === '-' || event.key === '+' || event.key === 'e' || event.key === 'E' || event.key === '.') event.preventDefault();"
+                   oninput="if(this.value < 0) this.value = 0; if(this.value % 1 !== 0) this.value = Math.floor(this.value);"
+                   required>
+
+            <button type="submit">Predict Risk</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <p>
+            Based on the entered academic indicators, the system will analyze
+            your behavior and predict the likelihood of missing the assignment
+            deadline.
+        </p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

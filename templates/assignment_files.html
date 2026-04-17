@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ assignment[1] }} Files</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <h1>{{ assignment[1] }}</h1>
+    <p>Attached Assignment Files</p>
+</header>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <a href="/dashboard">Back to Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="container">
+
+    <div class="card">
+        <h2>Attached Files</h2>
+        <p>Please review all files required for this assignment. Click any file to download or open it.</p>
+        
+        {% if files %}
+            <ul style="list-style-type: none; padding: 0;">
+                {% for f in files %}
+                    <li style="margin-bottom: 15px; padding: 10px; background: #f9f9f9; border-radius: 5px;">
+                        <a href="/download/{{ assignment[0] }}/{{ f[0] }}" target="_blank" style="font-weight: bold; font-size: 1.1em; text-decoration: none; color: #007bff;">
+                            📄 {{ f[0] }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No files attached to this assignment.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

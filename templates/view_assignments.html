@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Assignments</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <h1>Assignment Overview</h1>
+    <p>Faculty – Assignment & Student Tracking</p>
+</header>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- ===== CONTENT ===== -->
+<div class="container">
+
+    <h2>Assignments Given</h2>
+
+    {% if assignments and assignments|length > 0 %}
+
+        {% for a in assignments %}
+        <div class="card">
+            <h3>{{ a.name }}</h3>
+
+            <p>
+                <b>Description:</b><br>
+                {{ a.description }}
+            </p>
+
+            <p>
+                <b>Deadline:</b> {{ a.deadline }} days
+            </p>
+
+            <p style="margin-top: 15px; margin-bottom: 15px;">
+                {% if a.attachments and a.attachments|length > 0 %}
+                    <b style="display:block; margin-bottom:8px;">Attachments:</b>
+                    {% for f in a.attachments %}
+                        <a href="/{{ f[1] }}" target="_blank" style="text-decoration:none; margin-right:5px; display:inline-block; margin-bottom:5px;">
+                            <button type="button">📄 {{ f[0] }}</button>
+                        </a>
+                    {% endfor %}
+                {% elif a.file %}
+                    <a href="/{{ a.file }}" target="_blank">
+                        <button type="button">📄 View PDF</button>
+                    </a>
+                {% else %}
+                    <button type="button" disabled title="No PDF available" style="background: #ccc; cursor: not-allowed;">📄 View PDF</button>
+                {% endif %}
+            </p>
+
+            <p>
+                <b>Students Who Took This Assignment:</b>
+            </p>
+
+            {% if a.students and a.students|length > 0 %}
+                <ul>
+                    {% for s in a.students %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No students have taken this assignment yet.</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+    {% else %}
+        <div class="card">
+            <p>No assignments have been created yet.</p>
+        </div>
+    {% endif %}
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

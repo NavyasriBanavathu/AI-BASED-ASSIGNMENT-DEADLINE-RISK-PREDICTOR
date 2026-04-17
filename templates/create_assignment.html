@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Assignment</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <h1>Create Assignment</h1>
+    <p>Faculty Assignment Management</p>
+</header>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- ===== CONTENT ===== -->
+<div class="container">
+
+    <h2>New Assignment Details</h2>
+
+    <div class="card">
+        {% if error %}
+            <p style="color: red; font-weight: bold; text-align: center; margin-bottom: 15px;">{{ error }}</p>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+
+            <label><b>Assignment Name</b></label>
+            <input type="text" name="name"
+                   placeholder="Enter assignment title"
+                   required>
+
+            <label><b>Assignment Description / Requirements</b></label>
+            <textarea name="description"
+                      rows="5"
+                      placeholder="Describe assignment requirements, topics, and instructions"
+                      required></textarea>
+
+            <label><b>Upload Assignment PDFs</b> <small>(Max: 5 files, 10MB each, PDF only)</small></label>
+            <input type="file" name="assignment_files" accept=".pdf" multiple>
+
+            <label><b>Deadline (in days)</b></label>
+            <input type="number" name="deadline"
+                   placeholder="Enter deadline in days"
+                   required>
+
+            <button type="submit">Create Assignment</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <p>
+            Once the assignment is created, it will be visible to all students
+            as a notification on their dashboard.
+        </p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <h1>Student Dashboard</h1>
+    <p>Assignment Progress & Risk Prediction</p>
+</header>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/study_plan">Predict Risk</a>
+    <a href="/my_prediction">My Prediction</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="container">
+
+{% if not session.get("classroom_joined") %}
+
+    <!-- ===== JOIN CLASSROOM ===== -->
+    <div class="card center">
+        <h2>🔐 Join Classroom</h2>
+        <p>
+            Please join the classroom using the access code
+            provided by your faculty to view assignments.
+        </p>
+        <a href="/join_classroom">
+            <button>Join Classroom</button>
+        </a>
+    </div>
+
+{% else %}
+
+    <!-- ================================================= -->
+    <!-- =============== PENDING ASSIGNMENTS ============= -->
+    <!-- ================================================= -->
+    <h2>🕒 Pending Assignments</h2>
+
+    {% set has_pending = false %}
+    {% for a in assignments %}
+        {% if a[0] not in completed_ids %}
+            {% set has_pending = true %}
+            <div class="card">
+                <h3>{{ a[1] }}</h3>
+                <p>{{ a[2] }}</p>
+                <p><b>Deadline:</b> {{ a[3] }} days</p>
+
+                <div style="display: flex; gap: 12px; margin-top: 15px; align-items: center;">
+                    <a href="/assignment/{{ a[0] }}">
+                        <button type="button" style="padding: 6px 14px; font-size: 13px; border-radius: 4px;">Take Assignment</button>
+                    </a>
+                    
+                    {% if has_attachments and has_attachments.get(a[0]) %}
+                        <a href="/assignment_files/{{ a[0] }}">
+                            <button type="button" style="padding: 6px 14px; font-size: 13px; border-radius: 4px; background-color: #10b981;">View Assignment</button>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {% if not has_pending %}
+        <div class="card">
+            <p>🎉 No pending assignments.</p>
+        </div>
+    {% endif %}
+
+    <!-- ================================================= -->
+    <!-- ============= SUBMITTED ASSIGNMENTS ============== -->
+    <!-- ================================================= -->
+    <h2>✅ Submitted Assignments</h2>
+
+    {% set has_completed = false %}
+    {% for a in assignments %}
+        {% if a[0] in completed_ids %}
+            {% set has_completed = true %}
+            <div class="card">
+                <h3>{{ a[1] }}</h3>
+                <p>{{ a[2] }}</p>
+                <p class="low"><b>Status:</b> Submitted</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {% if not has_completed %}
+        <div class="card">
+            <p>No assignments submitted yet.</p>
+        </div>
+    {% endif %}
+
+{% endif %}
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    © 2026 AI-Based Assignment Deadline Risk Prediction System
+</footer>
+
+</body>
+</html>
