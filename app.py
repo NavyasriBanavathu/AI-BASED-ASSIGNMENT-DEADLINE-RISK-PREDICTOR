@@ -753,8 +753,10 @@ def view_assignments():
     )
 
 # =====================================================
-# MAIN
+# MAIN / CLOUD INITIALIZATION
 # =====================================================
+# Always initialize DB regardless of how the app is run (Python or Gunicorn)
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)
